@@ -9,6 +9,7 @@ public class Restaurant {
     public LocalTime openingTime;
     public LocalTime closingTime;
     private List<Item> menu = new ArrayList<Item>();
+    private List<Item> selectedItems = new ArrayList<Item>();
 
     public Restaurant(String name, String location, LocalTime openingTime, LocalTime closingTime) {
         this.name = name;
@@ -59,6 +60,24 @@ public class Restaurant {
 
     public String getName() {
         return name;
+    }
+
+    public void selectItemByName(String itemName) throws itemNotFoundException {
+        Item selectedItem = findItemByName(itemName);
+        if (selectedItem == null)
+            throw new itemNotFoundException(itemName);
+
+        selectedItems.add(selectedItem);
+    }
+
+    public List<Item> getSelectedItemFromList() { return selectedItems; }
+
+    public int getOrderValue(List<Item> itemList) {
+        int totalCost = 0;
+        for(Item value : itemList) {
+            totalCost = totalCost + value.getPrice();
+        }
+        return totalCost;
     }
 
 }

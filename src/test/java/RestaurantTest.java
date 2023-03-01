@@ -87,7 +87,7 @@ class RestaurantTest {
     }
 
     @Test
-    public void order_value_should_return_388_when_vegetable_lasagne_and_sweet_corn_soup_have_been_selected_from_the_menu(){
+    public void order_value_should_return_388_when_vegetable_lasagne_and_sweet_corn_soup_have_been_selected_from_the_menu() throws itemNotFoundException {
         restaurant.selectItemByName("Vegetable lasagne");
         restaurant.selectItemByName("Sweet corn soup");
         assertEquals(388,restaurant.getOrderValue(restaurant.getSelectedItemFromList()));
